@@ -1,0 +1,74 @@
+.webgl-toggle-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 5px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    width: 138px;
+    height: 32px;
+    margin-top: 0px;
+    border-radius: 16px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(154, 182, 255);
+    background-color: rgb(110, 151, 255);
+}
+
+.webgl-toggle-container span.label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #FFF;
+    margin-top: 0px !important; /* 엔트리 기본으로 margin-top이 4px 들어가 있어서 즉각 처단함 */
+}
+
+.webgl-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    height: 20px;
+}
+
+.webgl-toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    margin-top: 0px !important; /* 엔트리 기본으로 margin-top이 4px 들어가 있어서 즉각 처단함 */
+    width: 32px;
+    height: 20px;
+    background-color: #ccc;
+    -webkit-transition: .2s;
+    transition: .2s;
+    border-radius: 16px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    top: 2px;
+    background-color: white;
+    -webkit-transition: .2s;
+    transition: .2s;
+    border-radius: 16px;
+}
+
+input:checked + .slider {
+    background-color: rgb(22, 216, 163);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px rgb(22, 216, 163);
+}
+
+input:checked + .slider:before {
+    transform: translateX(12px);
+}
