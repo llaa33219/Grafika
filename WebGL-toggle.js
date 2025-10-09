@@ -1,4 +1,13 @@
 (function(global) {
+    // 현재 스크립트의 데이터 속성에서 리소스 URL 가져오기
+    const currentScript = document.currentScript || document.querySelector('script[data-pixi-url]');
+    const RESOURCE_URLS = {
+        pixi: currentScript?.getAttribute('data-pixi-url') || '',
+        preloadjs: currentScript?.getAttribute('data-preloadjs-url') || '',
+        easeljs: currentScript?.getAttribute('data-easeljs-url') || '',
+        soundjs: currentScript?.getAttribute('data-soundjs-url') || ''
+    };
+    
     // Entry 객체를 기다리는 함수
     function waitForEntry(callback, maxAttempts = 100) {
         let attempts = 0;
@@ -264,11 +273,11 @@
             console.log('Saving event listeners:', Object.keys(savedEventListeners));
             
             const entryJsSrc = getScriptSrc('entry.min.js') || getScriptSrc('entry.js');
-            const pixiJsSrc = 'https://pixijs.download/v4.8.5/pixi.min.js';
+            const pixiJsSrc = RESOURCE_URLS.pixi;
             const createjsLibs = [
-                'https://playentry.org/lib/PreloadJS/lib/preloadjs-0.6.0.min.js',
-                'https://playentry.org/lib/EaselJS/lib/easeljs-0.8.0.min.js',
-                'https://playentry.org/lib/SoundJS/lib/soundjs-0.6.0.min.js'
+                RESOURCE_URLS.preloadjs,
+                RESOURCE_URLS.easeljs,
+                RESOURCE_URLS.soundjs
             ];
 
             if (!entryJsSrc) {
